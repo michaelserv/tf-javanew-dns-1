@@ -2,6 +2,46 @@
 
 This module creates DNS records in Route53 zone.
 
+## Usage
+
+```hcl
+module "records_for_zone1" {
+  source = "../modules/records"
+
+  zone_name = local.zone_name
+
+  records = [
+    {
+      name            = ""
+      type            = "A"
+      set_identifier  = "failover-primary"
+      health_check_id = module.route53_health_check.http_healthcheck_id
+      ttl            = 5
+      records = [
+        "3.208.22.61",
+      ]
+      failover_routing_policy = {
+        type = "PRIMARY"
+      }
+    },
+    {
+      name           = ""
+      type           = "A"
+      set_identifier = "failover-secondary"
+      ttl            = 5
+      records = [
+        "54.234.136.202",
+      ]
+      failover_routing_policy = {
+        type = "SECONDARY"
+      }
+    }
+  ]
+
+  depends_on = [module.zone1, module.route53_health_check]
+}
+```
+
 ## Requirements
 
 | Name | Version |
