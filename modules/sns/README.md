@@ -8,7 +8,8 @@ Terraform module which creates SNS resources on AWS
 module "sns_topic" {
   source  = "../modules/sns"
 
-  name  = "my-topic"
+  name  = "route53-health-check"
+  email = ["sample@gmail.com"]
 }
 ```
 
