@@ -2,6 +2,22 @@
 
 This module creates Route53 zones.
 
+## Usage
+
+```hcl
+module "zone1" {
+  source = "../modules/zones"
+
+  zones = {
+    "public-zone-example1.com" = {
+      comment = "public-zone-example1.com - 1st public hosted zone"
+    }
+  }
+
+  tags = local.tags
+}
+```
+
 ## Requirements
 
 | Name | Version |
