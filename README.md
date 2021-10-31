@@ -1,6 +1,6 @@
 ## Summary
 
-This repo will create a create your custom EKS environment.
+This repo will create and set up your DNS resources with failover and notification.
 
 ## Basic Architecture
 
