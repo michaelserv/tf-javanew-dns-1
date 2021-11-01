@@ -29,7 +29,7 @@ resource "aws_sns_topic" "this" {
 resource "aws_sns_topic_subscription" "email-target" {
   count = var.create_sns_email_subscription ? length(var.email) : 0
 
-  topic_arn = aws_sns_topic.this[count.index].arn
+  topic_arn = aws_sns_topic.this[0].arn
   protocol  = "email"
   endpoint  = var.email[count.index]
 }
